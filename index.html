@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack de Otimização</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .typing-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #007BFF;
+            width: 0;
+            animation: typing 2s steps(10, end) forwards, blink 0.8s infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.85); 
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in;
+            backdrop-filter: blur(10px); 
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #007BFF;
+        }
+        .comparison-table {
+            margin-top: 40px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            color: #555;
+        }
+        .comparison-table th {
+            background-color: #f7f7f7;
+            font-weight: 600;
+        }
+        .comparison-table td {
+            background-color: #fff;
+        }
+        .comparison-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+        ul li {
+            background: #f7f7f7;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #555;
+        }
+        ul li strong {
+            color: #007BFF;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+
+        .btn-download {
+            margin-top: 30px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .alert {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f44336;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
+
+        .alert.error {
+            background-color: #f44336;
+        }
+
+        .input-senha {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            width: 300px;
+        }
+
+        .btn-submit-senha {
+            margin-top: 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-submit-senha:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .credits {
+            margin-top: 40px;
+            font-size: 18px;
+            color: #555;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+            animation: fadeInCredits 2s ease-in-out;
+        }
+
+        @keyframes fadeInCredits {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .price-info {
+            font-size: 24px;
+            color: #007BFF;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .production-status {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #FF5733;
+            font-weight: 600;
+        }
+
+        .production-status span {
+            color: #28a745;
+        }
+
+        .functions-info {
+            margin-top: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .info-container {
+            margin-top: 40px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-container img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="typing-container">Bem-vindo!</div>
+    <div class="container" id="content-container">
+        <h1>🔥 Comparação de Packs de Otimização 🔥</h1>
+        <p>Veja por que meu pack é diferente dos packs comuns do YouTube!</p>
+        
+        <h2> Comparação de Recursos</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Recursos</th>
+                <th>Meu Pack ✅</th>
+                <th>Packs do YouTube ❌</th>
+            </tr>
+            <tr>
+                <td>Ponto de restauração antes das otimizações</td>
+                <td>✅ Sim</td>
+                <td>✅ Sim</td>
+            </tr>
+            <tr>
+                <td>Scripts otimizados e seguros</td>
+                <td>✅ 100% Testado</td>
+                <td>❌ Risco de erros</td>
+            </tr>
+            <tr>
+                <td>Otimizações reais no Windows</td>
+                <td>✅ Sim</td>
+                <td>⚠️ Apenas superficiais</td>
+            </tr>
+            <tr>
+                <td>Melhoria no input-lag</td>
+                <td>✅ Sim</td>
+                <td>✅ Sim</td>
+            </tr>
+            <tr>
+                <td>Remoção de bloatware</td>
+                <td>✅ Completa</td>
+                <td>⚠️ Parcial</td>
+            </tr>
+            <tr>
+                <td>Configurações avançadas para FPS</td>
+                <td>✅ Sim</td>
+                <td>❌ Não</td>
+            </tr>
+            <tr>
+                <td>Otimizações para SSD e HD</td>
+                <td>✅ Sim</td>
+                <td>✅ Sim</td>
+            </tr>
+            <tr>
+                <td>Planos de energia personalizados</td>
+                <td>✅ Sim</td>
+                <td>❌ Não</td>
+            </tr>
+            <tr>
+                <td>Drivers atualizados e otimizados</td>
+                <td>✅ Sim</td>
+                <td>❌ Não</td>
+            </tr>
+            <tr>
+                <td>Pasta Apenas para Games</td>
+                <td>✅ Sim</td>
+                <td>❌ Não</td>
+            </tr>
+            <tr>
+                <td> Tweaks Facil de Utilizar</td>
+                <td>✅ Sim</td>
+                <td>❌ Não</td>
+            </tr>
+            <tr>
+                <td>Uma Opção de Reverter</td>
+                <td>✅ Sim</td>
+                <td>❌ Não</td>
+            </tr>
+        </table>
+
+        <div class="info-container">
+            <h3>📢 Informações do Pack:</h3>
+            <p><strong>Preço:</strong> <span>0,00</span></p>
+            <p><strong>Status de Produção:</strong> <span>Em andamento - Finalização prevista para [18/03/2025]</span></p>
+            <p><strong>Créditos aos desenvolvedores:</strong> <span>Reck e Keylogger</span></p>
+            <p><strong>O que está incluído no pack:</strong></p>
+            <ul>
+                <li><strong>Otimizações para Windows</strong> - Aumente o desempenho do seu PC com otimizações de CPU, memória e rede.</li>
+                <li><strong>Melhoria do FPS em jogos</strong> - Configure o sistema para maximizar o desempenho em jogos como Minecraft, Fortnite, etc.</li>
+                <li><strong>Reversões fáceis</strong> - Não gostou de alguma otimização? Reversões rápidas para voltar ao estado original.</li>
+                <li><strong>Função de segurança</strong> - Scripts e otimizações testadas para garantir a segurança do seu sistema.</li>
+            </ul>
+            <img src="C:\Users\xitad\Desktop\site\imgs\demonstração.png" alt="Demonstração do Pack" />
+        </div>
+
+        <div class="functions-info">
+            <h3>🔧 Funções do Pack:</h3>
+            <ul>
+                <li><strong>Otimização de CPU:</strong> Melhora o desempenho do processador com ajustes avançados.</li>
+                <li><strong>Otimização de GPU:</strong> Ajustes para maximizar o desempenho da sua placa de vídeo.</li>
+                <li><strong>Otimização de SSD/HD:</strong> Aumenta a vida útil e o desempenho do seu disco rígido ou SSD.</li>
+                <li><strong>Limpeza de Bloatware:</strong> Remove programas desnecessários e arquivos temporários.</li>
+            </ul>
+        </div>
+
+        <!-- Caixa para inserir a senha -->
+        <input type="password" class="input-senha" id="senha" placeholder="Digite a senha">
+        <button class="btn-submit-senha" onclick="verificarSenha()">Acessar</button>
+        <div id="alerta" class="alert"></div>
+        
+        
+
+    <script>
+        // Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    }
+                }
+            }
+        });
+
+        function verificarSenha() {
+            var senha = document.getElementById("senha").value;
+            var alerta = document.getElementById("alerta");
+
+            if (senha === "testador") {
+                alerta.className = "alert success";
+                alerta.textContent = "Senha correta! Você pode baixar o pack.";
+                alerta.style.display = "block";
+                window.location.href = "https://www.mediafire.com/file/ny9x5j862y6s98g/Super+PACK+ultra+performance.rar/file";
+            } else {
+            
+                alerta.className = "alert error";
+                alerta.textContent = "Senha incorreta! Apenas testadores oficiais têm acesso.";
+                alerta.style.display = "block";
+            }
+        }
+
+        // Exibe o conteúdo após 3 segundos
+        setTimeout(function() {
+            document.getElementById('content-container').style.display = 'block';
+        }, 3000);
+    </script>
+</body>
+</html>
